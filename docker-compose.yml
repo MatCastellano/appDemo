@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:15.3-alpine3.18
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: appDemo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./.jmix/postgres:/var/lib/postgresql/data
