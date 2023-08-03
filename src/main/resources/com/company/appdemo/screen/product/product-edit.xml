@@ -43,15 +43,15 @@
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="productDc">
             <column width="350px">
-                <textField id="p_nameField" property="p_name"/>
-                <textArea id="descriptionField" property="description"/>
-                <textField id="priceField" property="prices"/>
-                <entityComboBox id="categoryField" property="category" optionsContainer="productCategoriesDc"/>
+                <textField id="p_nameField" property="p_name" caption="Product Name" icon="font-icon:PRODUCT_HUNT"/>
+                <textArea id="descriptionField" property="description" caption="Description" icon="font-icon:INFO"/>
+                <!--<textField id="priceField" property="prices" caption="Price" />-->
+                <entityComboBox id="categoryField" property="category" optionsContainer="productCategoriesDc" caption="Category" icon="BOOK"/>
             </column>
         </form>
         <tabSheet id="contentTabSheet">
             <tab id="stockItemsBox" caption="StockItems" margin="true"
-                 spacing="true">
+                 spacing="true" icon="font-icon:INDENT" >
                 <table id="stockItemsTable" dataContainer="stockItemsDc" width="100%" >
                     <actions>
                         <action id="create" type="create"/>
@@ -59,7 +59,7 @@
                         <action id="remove" type="remove"/>
                     </actions>
                     <columns>
-                        <column id="identifier"/>
+                        <column id="identifier" caption="Identifier" />
 
                     </columns>
                     <buttonsPanel>
@@ -72,7 +72,7 @@
 
 
         <tab id="pricesBox" caption="Prices" margin="true"
-             spacing="true">
+             spacing="true" icon="font-icon:MONEY">
             <table id="pricesTable" dataContainer="pricesDc" width="100%" >
                 <actions>
                     <action id="create" type="create"/>
@@ -80,7 +80,7 @@
                     <action id="remove" type="remove"/>
                 </actions>
                 <columns>
-                    <column id="price"/>
+                    <column id="price" caption="Price" />
                 </columns>
                 <buttonsPanel>
                     <button action="pricesTable.create"/>

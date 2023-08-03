@@ -8,6 +8,14 @@
         <item screen="Product.browse" caption="msg://com.company.appdemo.screen.product/productBrowse.menu"/>
         <item screen="ProductCategory.browse"
               caption="msg://com.company.appdemo.screen.productcategory/productCategoryBrowse.menu"/>
+        <item screen="ORDER.browse" caption="msg://com.company.appdemo.screen.order/orderBrowse.menu"/>
+        <item screen="ORDER_TAB.browse" caption="msg://com.company.appdemo.screen.order_tab/order_TabBrowse.menu"/>
+        <item screen="StockItem.browse" caption="msg://com.company.appdemo.screen.stockitem/stockItemBrowse.menu"/>
+        <item screen="Orderline.browse" caption="msg://com.company.appdemo.screen.orderline/orderlineBrowse.menu"/>
+        <item screen="DocumentCategory.browse"
+              caption="msg://com.company.appdemo.screen.documentcategory/documentCategoryBrowse.menu"/>
+        <item screen="Calendar_1.browse" caption="msg://com.company.appdemo.screen.calendar/calendar1Browse.menu"/>
+        <item screen="Email.browse" caption="msg://com.company.appdemo.screen.email/emailBrowse.menu"/>
     </menu>
 
 </menu-config>

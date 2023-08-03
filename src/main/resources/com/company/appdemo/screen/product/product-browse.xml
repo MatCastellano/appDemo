@@ -45,15 +45,16 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="download" type="excelExport"/>
             </actions>
             <columns>
                 <group>
                     <column id="category"/>
                 </group>
-                <column id="p_name"/>
-                <column id="description"/>
-                <column id="prices"/>
-                <column id="category"/>
+                <column id="p_name" caption="Product Name"/>
+                <column id="description" caption="Description"/>
+                <column id="prices" caption="Price"/>
+                <column id="category" caption="Category"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
@@ -61,6 +62,7 @@
                 <button id="createBtn" action="productsTable.create"/>
                 <button id="editBtn" action="productsTable.edit"/>
                 <button id="removeBtn" action="productsTable.remove"/>
+                <button id="downloadButton" action="productsTable.download" primary="true"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

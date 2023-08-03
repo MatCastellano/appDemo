@@ -29,10 +29,10 @@
                 modal="true"
                 forceDialog="true"/>
     <layout spacing="true" expand="editActions">
-        <form id="form" dataContainer="priceDc">
+        <form id="form" dataContainer="priceDc" >
             <column width="350px">
-                <textField id="priceField" property="price"/>
-                <entityPicker id="productField" property="product"/>
+                <currencyField id="priceField" property="price" caption="Price" icon="font-icon:MONEY"/>
+                <entityPicker id="productField" property="product" caption="Product" icon="font-icon:PRODUCT_HUNT"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

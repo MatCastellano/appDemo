@@ -27,21 +27,32 @@
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="userDc">
             <column width="350px">
-                <textField id="usernameField" property="username" editable="false"/>
+                <comboBox id="tenantField" property="tenant" editable="false" caption="Tenant" icon="EMPIRE"/>
+                <textField id="usernameField" property="username" editable="false" icon="font-icon:USER"/>
                 <passwordField id="passwordField"
                                caption="msg://com.company.appdemo.entity/User.password"
                                required="true"
-                               visible="false"/>
+                               visible="false"
+                               icon="font-icon:USER_SECRET"
+                />
                 <passwordField id="confirmPasswordField"
                                caption="msg://confirmPassword"
                                required="true"
-                               visible="false"/>
-                <textField id="firstNameField" property="firstName"/>
-                <textField id="lastNameField" property="lastName"/>
-                <textField id="emailField" property="email"/>
-                <comboBox id="timeZoneField" property="timeZoneId"/>
-                <checkBox id="activeField" property="active"/>
-                <textField id="passwordField" property="password"/>
+                               visible="false"
+                               icon="font-icon:USER_SECRET"/>
+                <textField id="firstNameField" property="firstName" icon="font-icon:USER_CIRCLE_O"/>
+                <textField id="lastNameField" property="lastName" icon="font-icon:USER_CIRCLE_O"/>
+
+                <textField id="emailField" property="email" icon="font-icon:MAIL_FORWARD" >
+                    <validators>
+                        <email message="Invalid email"/>
+                    </validators>
+                </textField>
+
+                <comboBox id="timeZoneField" property="timeZoneId" icon="font-icon:CALENDAR_TIMES_O"/>
+                <checkBox id="activeField" property="active" icon="font-icon:CHECK"/>
+
+
             </column>
         </form>
         <hbox id="editActions" spacing="true">

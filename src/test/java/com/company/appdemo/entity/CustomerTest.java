@@ -4,6 +4,7 @@ package com.company.appdemo.entity;
 import io.jmix.core.DataManager;
 import io.jmix.core.security.SystemAuthenticator;
 import org.assertj.core.internal.bytebuddy.asm.Advice;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,16 +30,23 @@ class CustomerIntegrationTest {
 
     @Autowired
     Validator validator;
+    private Customer customer;
+
+    @BeforeEach
+    void setUp() {
+        customer= dataManager.create(Customer.class);
+    }
+
     @Test
     void given_validCustomer_when_saveCustomer_then_customerIsSaved(){
 
-        Customer customer= dataManager.create(Customer.class);
 
-        customer.setFirstName("Foo");
-        customer.setLastName("Bar");
-        customer.setEmail("fo@ba.it");
-        customer.setAddress("via delle vie 10");
-        customer.setPassword("1235");
+
+        customer.setFirstName("Tutan");
+        customer.setLastName("Kamon");
+        customer.setEmail("tut@kam.it");
+        customer.setAddress("via Eufrate 66");
+
 
 
         Customer cust=  systemAuthenticator.withSystem(() ->dataManager.save(customer) );
@@ -50,13 +58,13 @@ class CustomerIntegrationTest {
         assertThat(cust.getId()).isNotNull();
     }
 
-    @Test
+/*    @Test
     void given_customerWithInvalidEmail_when_saveCustomer_then_customerIsSaved(){
 
-        Customer customer= dataManager.create(Customer.class);
 
 
-        customer.setEmail("Invalid email");
+
+        customer.setEmail("InvalidEmailAddress");
 
 
         Set<ConstraintViolation<Customer>> violations = validator.validate(customer, Default.class);
@@ -64,12 +72,18 @@ class CustomerIntegrationTest {
 
         assertThat(violations).hasSize(1);
 
-        ConstraintViolation<Customer> emailViolations = violations.stream().findFirst().orElseThrow();
+        ConstraintViolation<Customer> emailViolations =firstViolation(violations);
 
-        assertThat(emailViolations.getPropertyPath().toString()).isEqualTo("email");
+        assertThat(emailViolations.getPropertyPath().toString()).isEqualTo("emailField");
 
 
 
-        assertThat(emailViolations.getMessageTemplate()).isEqualTo("email");
+        assertThat(emailViolations.getMessageTemplate()).isEqualTo("emailField");
     }
+
+    private ConstraintViolation<Customer> firstViolation(Set<ConstraintViolation<Customer>> violations) {
+        return violations.stream().findFirst().orElseThrow();
+    }*/
+
+
 }

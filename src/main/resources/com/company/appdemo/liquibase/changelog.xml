@@ -8,9 +8,16 @@
     <!-- DO NOT REMOVE. This is a master changelog that runs all other changelogs. -->
 
     <include file="/io/jmix/data/liquibase/changelog.xml"/>
+    <include file="/io/jmix/multitenancy/liquibase/changelog.xml"/>
     <include file="/io/jmix/uidata/liquibase/changelog.xml"/>
     <include file="/io/jmix/securitydata/liquibase/changelog.xml"/>
     <include file="/io/jmix/audit/liquibase/changelog.xml"/>
+    <include file="/io/jmix/securityoauth2/liquibase/changelog.xml"/>
+    <include file="/io/jmix/email/liquibase/changelog.xml"/>
+    <include file="/io/jmix/quartz/liquibase/changelog.xml"/>
+    <include file="/io/jmix/reports/liquibase/changelog.xml"/>
+    <include file="/io/jmix/imap/liquibase/changelog.xml"/>
+    <include file="/io/jmix/emailtemplates/liquibase/changelog.xml"/>
 
     <includeAll path="/com/company/appdemo/liquibase/changelog"/>
 

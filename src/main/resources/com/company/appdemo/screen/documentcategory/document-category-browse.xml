@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://documentCategoryBrowse.caption"
+        focusComponent="documentCategoriesTable">
+    <data readOnly="true">
+        <collection id="documentCategoriesDc"
+                    class="com.company.appdemo.entity.DocumentCategory">
+            <fetchPlan extends="_base"/>
+            <loader id="documentCategoriesDl">
+                <query>
+                    <![CDATA[select e from DocumentCategory e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="documentCategoriesTable" spacing="true">
+        <filter id="filter"
+                dataLoader="documentCategoriesDl">
+            <properties include=".*"/>
+        </filter>
+        <table id="documentCategoriesTable"
+               width="100%"
+               dataContainer="documentCategoriesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="tipologia" caption="Tipologia Documento"/>
+                <column id="scadenza" caption="Scadenza Doc"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="documentCategoriesTable.create"/>
+                <button id="editBtn" action="documentCategoriesTable.edit"/>
+                <button id="removeBtn" action="documentCategoriesTable.remove"/>
+            </buttonsPanel>
+        </table>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

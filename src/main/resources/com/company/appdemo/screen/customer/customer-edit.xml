@@ -5,9 +5,21 @@
     <data>
         <instance id="customerDc"
                   class="com.company.appdemo.entity.Customer">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+
+            </fetchPlan>
             <loader/>
         </instance>
+        <collection id="documentCategoriesDc"
+                    class="com.company.appdemo.entity.DocumentCategory">
+            <fetchPlan extends="_base"/>
+
+            <loader id="documentCategoriesDl">
+                <query>
+                    <![CDATA[select e from DocumentCategory e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -27,11 +39,22 @@
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="customerDc">
             <column width="350px">
-                <textField id="firstNameField" property="firstName"/>
-                <textField id="lastNameField" property="lastName"/>
-                <textField id="emailField" property="email"/>
-                <textField id="passwordField" property="password"/>
-                <textField id="addressField" property="address"/>
+                <textField id="firstNameField" property="firstName" caption="First Name" icon="font-icon:USER"/>
+                <textField id="lastNameField" property="lastName" caption="Last Name" icon="font-icon:USER"/>
+                <textField id="emailField" property="email" caption="Email" icon="font-icon:MAIL_FORWARD"/>
+                <textField id="addressField" property="address" caption="Address" icon="ADDRESS_CARD"/>
+                <entityComboBox id="category" property="category" optionsContainer="documentCategoriesDc" caption="Documento" icon="BOOK"/>
+                <fileStorageUpload id="documentField"
+                                   property="document"
+                                   caption="Customer Document"
+                                   showClearButton="true"
+                                   showFileName="true"
+                                   uploadButtonIcon="UPLOAD"
+                                   clearButtonIcon="font-icon:REMOVE"
+                                   width="AUTO"
+                                   icon="FILE_ARCHIVE_O"
+                                   fileStoragePutMode="MANUAL"
+                />
             </column>
         </form>
         <hbox id="editActions" spacing="true">

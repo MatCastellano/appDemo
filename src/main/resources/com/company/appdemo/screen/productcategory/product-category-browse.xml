@@ -44,8 +44,8 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="description"/>
+                <column id="name" caption="Name"/>
+                <column id="description" caption="Description"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

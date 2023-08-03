@@ -5,7 +5,9 @@
     <data>
         <instance id="stockItemDc"
                   class="com.company.appdemo.entity.StockItem">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="product" fetchPlan="_base"/>
+            </fetchPlan>
             <loader/>
         </instance>
     </data>
@@ -29,7 +31,8 @@
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="stockItemDc">
             <column width="350px">
-                <textField id="identifierField" property="identifier"/>
+                <textField id="identifierField" property="identifier" caption="Identifier" icon="font-icon:INDENT"/>
+
             </column>
         </form>
         <hbox id="editActions" spacing="true">

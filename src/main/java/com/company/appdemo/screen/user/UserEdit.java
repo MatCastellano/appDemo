@@ -1,10 +1,14 @@
 package com.company.appdemo.screen.user;
 
 import com.company.appdemo.entity.User;
+import com.google.common.base.Strings;
 import io.jmix.core.EntityStates;
 import io.jmix.core.security.event.SingleUserPasswordChangeEvent;
+import io.jmix.multitenancy.core.TenantProvider;
+import io.jmix.multitenancyui.MultitenancyUiSupport;
 import io.jmix.ui.Notifications;
 import io.jmix.ui.component.ComboBox;
+import io.jmix.ui.component.HasValue;
 import io.jmix.ui.component.PasswordField;
 import io.jmix.ui.component.TextField;
 import io.jmix.ui.model.DataContext;
@@ -47,21 +51,39 @@ public class UserEdit extends StandardEditor<User> {
     @Autowired
     private ComboBox<String> timeZoneField;
 
+    @Autowired
+    private ComboBox<String> tenantField;
+
+    @Autowired
+    private TenantProvider tenantProvider;
+
+    @Autowired
+    private MultitenancyUiSupport multitenancyUiSupport;
     private boolean isNewEntity;
 
     @Subscribe
     public void onInit(InitEvent event) {
+        tenantField.setOptionsList(multitenancyUiSupport.getTenantOptions());
         timeZoneField.setOptionsList(Arrays.asList(TimeZone.getAvailableIDs()));
     }
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<User> event) {
+        tenantField.setEditable(true);
         usernameField.setEditable(true);
         passwordField.setVisible(true);
         confirmPasswordField.setVisible(true);
-        isNewEntity = true;
-    }
 
+    }
+    @Subscribe
+    public void onBeforeShow(BeforeShowEvent event) {
+        String currentTenantId = tenantProvider.getCurrentUserTenantId();
+        if (!currentTenantId.equals(TenantProvider.NO_TENANT)
+                && Strings.isNullOrEmpty(tenantField.getValue())) {
+            tenantField.setEditable(false);
+            tenantField.setValue(currentTenantId);
+        }
+    }
     @Subscribe
     public void onAfterShow(AfterShowEvent event) {
         if (entityStates.isNew(getEditedEntity())) {
@@ -87,5 +109,12 @@ public class UserEdit extends StandardEditor<User> {
         if (isNewEntity) {
             getApplicationContext().publishEvent(new SingleUserPasswordChangeEvent(getEditedEntity().getUsername(), passwordField.getValue()));
         }
+    }
+
+    @Subscribe("tenantField")
+    public void onTenantFieldValueChange(HasValue.ValueChangeEvent<String> event) {
+        usernameField.setValue(
+                multitenancyUiSupport.getUsernameByTenant(
+                        usernameField.getValue(), event.getValue()));
     }
 }

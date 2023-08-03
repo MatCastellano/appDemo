@@ -1,0 +1,8 @@
+@import "app-defaults";
+@import "addons";
+@import "app";
+
+.app {
+  @include addons;
+  @include app;
+}

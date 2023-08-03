@@ -49,13 +49,14 @@
                 <action id="resetRememberMeToken" type="resetRememberMeToken"/>
             </actions>
             <columns>
-                <column id="username"/>
-                <column id="firstName"/>
-                <column id="lastName"/>
-                <column id="email"/>
-                <column id="timeZoneId"/>
-                <column id="active"/>
-                <column id="password"/>
+                <column id="tenant" caption="Tenant"/>
+                <column id="username" caption="Username"/>
+                <column id="firstName" caption="First Name"/>
+                <column id="lastName" caption="Last Name"/>
+                <column id="email" caption="Email"/>
+                <column id="timeZoneId" caption="Time Zone Id"/>
+                <column id="active" caption="Active"/>
+
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

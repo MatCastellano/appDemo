@@ -2,6 +2,7 @@ package com.company.appdemo.screen.login;
 
 import io.jmix.core.MessageTools;
 import io.jmix.core.Messages;
+import io.jmix.multitenancyui.MultitenancyUiSupport;
 import io.jmix.securityui.authentication.AuthDetails;
 import io.jmix.securityui.authentication.LoginScreenSupport;
 import io.jmix.ui.JmixApp;
@@ -9,6 +10,7 @@ import io.jmix.ui.Notifications;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.component.*;
 import io.jmix.ui.navigation.Route;
+import io.jmix.ui.navigation.UrlRouting;
 import io.jmix.ui.screen.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -52,6 +54,12 @@ public class LoginScreen extends Screen {
 
     @Autowired
     private JmixApp app;
+
+    @Autowired
+    private MultitenancyUiSupport multitenancyUiSupport;
+
+    @Autowired
+    private UrlRouting urlRouting;
 
     @Value("${ui.login.defaultUsername:}")
     private String defaultUsername;
@@ -103,7 +111,12 @@ public class LoginScreen extends Screen {
 
     private void login() {
         String username = usernameField.getValue();
+
+        username = multitenancyUiSupport.getUsernameByUrl(username, urlRouting);
+
         String password = passwordField.getValue();
+
+
 
         if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
             notifications.create(Notifications.NotificationType.WARNING)

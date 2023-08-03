@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="Orders Tab"
+        focusComponent="order_TabsTable">
+    <data readOnly="true">
+        <collection id="order_TabsDc"
+                    class="com.company.appdemo.entity.Order_Tab">
+            <fetchPlan extends="_base">
+                <property name="orderline" fetchPlan="_base">
+                    <property name="stockItem" fetchPlan="_base">
+                        <property name="product" fetchPlan="_base"/>
+                    </property>
+                </property>
+            </fetchPlan>
+            <loader id="order_TabsDl">
+                <query>
+                    <![CDATA[select e from ORDER_TAB e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="lookupSelectAction"
+                caption="msg:///actions.Select"
+                icon="LOOKUP_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="lookupCancelAction"
+                caption="msg:///actions.Cancel"
+                icon="LOOKUP_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="order_TabsTable" spacing="true">
+        <filter id="filter"
+                dataLoader="order_TabsDl" width="100%" >
+            <properties include=".*"/>
+        </filter>
+
+        <groupTable id="order_TabsTable"
+                    width="100%"
+                    dataContainer="order_TabsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="download" type="excelExport"/>
+            </actions>
+
+            <columns>
+                <column id="id" caption="Order ID"/>
+                <column id="date" caption="Order Date" />
+                <column id="customer" caption="Customer"/>
+            </columns>
+            <simplePagination/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="order_TabsTable.create"/>
+                <button id="editBtn" action="order_TabsTable.edit"/>
+                <button id="removeBtn" action="order_TabsTable.remove"/>
+                <button id="downloadButton" action="order_TabsTable.download" primary="true"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -29,8 +29,8 @@
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="productCategoryDc">
             <column width="350px">
-                <textField id="nameField" property="name"/>
-                <textField id="descriptionField" property="description"/>
+                <textField id="nameField" property="name" caption="Name" icon="font-icon:PRODUCT_HUNT"/>
+                <textField id="descriptionField" property="description" caption="Description" icon="font-icon:INFO"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

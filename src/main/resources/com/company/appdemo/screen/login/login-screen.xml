@@ -19,7 +19,8 @@
                 <label id="welcomeLabel"
                        align="MIDDLE_CENTER"
                        stylename="jmix-login-caption"
-                       value="msg://welcomeLabel"/>
+                       value="msg://welcomeLabel"
+                />
 
                 <vbox id="loginForm"
                       spacing="true"
@@ -50,7 +51,8 @@
                     <button id="loginButton"
                             align="MIDDLE_CENTER"
                             action="submit"
-                            stylename="jmix-login-submit-button"/>
+                            stylename="jmix-login-submit-button"
+                            caption="Login"/>
                 </vbox>
             </vbox>
         </vbox>
